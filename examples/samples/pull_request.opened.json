@@ -1,0 +1,35 @@
+{
+  "action": "opened",
+  "number": 7,
+  "pull_request": {
+    "number": 7,
+    "title": "Retry idempotent payment calls",
+    "body": "Fixes flaky checkout on 503s from the payment provider.",
+    "draft": false,
+    "state": "open",
+    "user": {
+      "login": "alice",
+      "type": "User"
+    },
+    "base": {
+      "ref": "main"
+    },
+    "head": {
+      "ref": "fix/payment-retries",
+      "sha": "d34db33fcafebabe1234567890abcdef12345678"
+    },
+    "html_url": "https://github.com/your-org/your-repo/pull/7"
+  },
+  "repository": {
+    "full_name": "your-org/your-repo",
+    "name": "your-repo",
+    "owner": {
+      "login": "your-org"
+    },
+    "private": false
+  },
+  "sender": {
+    "login": "alice",
+    "type": "User"
+  }
+}

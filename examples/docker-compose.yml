@@ -1,0 +1,34 @@
+# Local trial stack: one pinned n8n with a persistent volume.
+#
+#   docker compose -f examples/docker-compose.yml up -d
+#   open http://localhost:5678        (create the local owner account on first start)
+#   docker compose -f examples/docker-compose.yml down
+#
+# GitHub must be able to reach the webhook, so for a real delivery expose n8n publicly or use a
+# tunnel (cloudflared, ngrok, tailscale funnel) and set WEBHOOK_URL to that public URL.
+# To try it without GitHub at all, use examples/send-test-delivery.sh.
+#
+# N8N_ENCRYPTION_KEY protects the credentials stored in the volume: replace it before you
+# put anything real in this instance.
+
+name: ftw-github-pr-summary-free
+
+services:
+  n8n:
+    image: n8nio/n8n:2.39.7
+    ports:
+      - "127.0.0.1:5678:5678"
+    environment:
+      - N8N_ENCRYPTION_KEY=replace-me-with-a-long-random-string
+      - N8N_HOST=localhost
+      - WEBHOOK_URL=http://localhost:5678/
+      - GENERIC_TIMEZONE=UTC
+      - TZ=UTC
+      - N8N_DIAGNOSTICS_ENABLED=false
+      - N8N_RUNNERS_ENABLED=true
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ../workflows:/workflows:ro
+
+volumes:
+  n8n_data:

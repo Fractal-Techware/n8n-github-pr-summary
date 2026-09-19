@@ -1,0 +1,48 @@
+[
+  {
+    "filename": "src/payments/client.py",
+    "status": "modified",
+    "additions": 34,
+    "deletions": 8,
+    "changes": 42,
+    "patch": "@@ -12,8 +12,34 @@ class PaymentClient:\n-    def charge(self, amount):\n-        return self._post('/charge', {'amount': amount})\n+    def charge(self, amount, idempotency_key):\n+        for attempt in range(3):\n+            resp = self._post('/charge', {'amount': amount},\n+                              headers={'Idempotency-Key': idempotency_key})\n+            if resp.status_code < 500:\n+                return resp\n+            time.sleep(2 ** attempt)\n+        raise PaymentUnavailable('payment provider returned 5xx three times')"
+  },
+  {
+    "filename": "tests/test_payment_client.py",
+    "status": "added",
+    "additions": 51,
+    "deletions": 0,
+    "changes": 51,
+    "patch": "@@ -0,0 +1,51 @@\n+def test_charge_retries_on_503(httpserver):\n+    httpserver.expect_request('/charge').respond_with_data(status=503)\n+    with pytest.raises(PaymentUnavailable):\n+        client.charge(100, 'key-1')\n+\n+def test_charge_sends_idempotency_key(httpserver):\n+    assert httpserver.last_request.headers['Idempotency-Key'] == 'key-1'"
+  },
+  {
+    "filename": "docs/payments.md",
+    "status": "modified",
+    "additions": 6,
+    "deletions": 2,
+    "changes": 8,
+    "patch": "@@ -4,2 +4,6 @@\n-Charges are sent once.\n+Charges are retried up to three times on 5xx responses.\n+Every attempt carries the same `Idempotency-Key`, so the provider\n+collapses duplicates."
+  },
+  {
+    "filename": "src/generated/api_schema.py",
+    "status": "modified",
+    "additions": 430,
+    "deletions": 120,
+    "changes": 550
+  },
+  {
+    "filename": "package-lock.json",
+    "status": "modified",
+    "additions": 812,
+    "deletions": 44,
+    "changes": 856,
+    "patch": "@@ -1200,7 +1200,7 @@\n-      \"version\": \"4.17.20\",\n+      \"version\": \"4.17.21\","
+  },
+  {
+    "filename": "docs/img/payment-flow.png",
+    "status": "added",
+    "additions": 0,
+    "deletions": 0,
+    "changes": 0
+  }
+]

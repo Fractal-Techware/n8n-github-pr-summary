@@ -138,7 +138,7 @@ This repository is the free edition of the
 **[n8n GitHub AI Workflows](https://store.fractaltechware.com/l/n8n-github-ai-workflows?utm_source=github&utm_medium=readme&utm_campaign=free-repo)**
 pack — same build, same test standard, the rest of the repository chores:
 
-| | **Free** (this repo) | **Starter** $19 | **Pro** $49 | **Studio** $99 |
+| | **Free** (this repo) | **Starter** $19 | **Pro** $49 | **Agency** $299 |
 |---|:---:|:---:|:---:|:---:|
 | Importable workflows | 1 | 9 | 15 | 18 |
 | AI pull request summaries | yes | yes | yes | yes |

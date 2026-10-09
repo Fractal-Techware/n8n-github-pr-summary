@@ -158,6 +158,23 @@ More free, tested building blocks: [github.com/Fractal-Techware](https://github.
 Issues and pull requests are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). Every behaviour change
 needs a test in `tests/run_tests.py`.
 
+## More free editions from Fractal Techware
+
+Every pack has a free, MIT-licensed edition. These are the other nine — all runnable, all with
+their own tests.
+
+- [Prometheus Alert Rules & Runbooks](https://github.com/Fractal-Techware/prometheus-alert-rules) — tested alert rules, each with a runbook
+- [Kubernetes Hardening Baseline](https://github.com/Fractal-Techware/kubernetes-hardening-baseline) — Kyverno policies proven with enforce semantics
+- [Production Helm Chart](https://github.com/Fractal-Techware/helm-production-chart) — library chart with secure defaults and helm-unittest suites
+- [OpenTelemetry Collector Recipes](https://github.com/Fractal-Techware/opentelemetry-collector-recipes) — collector configs: tail sampling, PII redaction, Kubernetes
+- [Grafana Dashboards](https://github.com/Fractal-Techware/grafana-dashboards) — provisioned dashboards for hosts, Kubernetes and Prometheus
+- [SLO as Code](https://github.com/Fractal-Techware/slo-as-code) — SLIs, error budgets and burn-rate alerts generated from YAML
+- [VPS Observability Stack](https://github.com/Fractal-Techware/vps-observability-stack) — single-server Prometheus, Grafana and Loki behind Caddy
+- [n8n Production Compose](https://github.com/Fractal-Techware/n8n-production-compose) — hardened n8n with Postgres and automatic HTTPS
+- [n8n Incident Triage](https://github.com/Fractal-Techware/n8n-incident-triage-workflow) — Alertmanager to LLM triage to chat, as n8n workflows
+
+The paid tiers and the full catalogue are at [fractaltechware.com](https://fractaltechware.com).
+
 ## License
 
 [MIT](LICENSE) © 2026 Fractal Techware SRL
